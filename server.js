@@ -9,8 +9,8 @@ const bodyParser = require('body-parser');
 const cors = require("cors");
 const path = require("path");
 const app = express();
-const PORT = process.env.PORT || 3000;
-const MONGO_URI = process.env.MONGO_URI;
+const PORT = process.env.PORT || 3001;;
+const MONGO_URI = process.env.MONGO_URI ||'mongodb://host.docker.internal:27017/yourDatabaseName';
 
 // Middleware
 app.use(express.json());
@@ -92,4 +92,6 @@ app.get("/", (req, res) => {
       </div>
     </nav>
   `;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server running on port ${PORT}`);
+})
